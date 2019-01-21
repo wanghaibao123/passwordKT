@@ -1,4 +1,4 @@
-package com.kotlin.whbvac.passwordkt.ui
+package com.kotlin.whbvac.passwordkt.ui.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle
