@@ -5,6 +5,8 @@ buildscript {
     repositories {
         google()
         jcenter()
+        // 阿里的maven仓国内镜像
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
@@ -17,6 +19,8 @@ buildscript {
 
 allprojects {
     repositories {
+        // 阿里的maven仓国内镜像
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         google()
         jcenter()
     }
