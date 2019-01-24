@@ -49,5 +49,6 @@
 
     <color name="white">@android:color/white</color>
     <color name="orange">#F8B42B</color>
+    <color name="black">@android:color/black</color>
 </resources>
 

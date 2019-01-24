@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.kotlin.whbvac.passwordkt.R
 import com.kotlin.whbvac.passwordkt.entity.TabEntity
-import com.kotlin.whbvac.passwordkt.ui.fragment.BlankFragment
+import com.kotlin.whbvac.passwordkt.ui.fragment.PassWordFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
@@ -31,8 +31,8 @@ class MainActivity : BaseActivity() {
         var tabEntitys: ArrayList<CustomTabEntity> = ArrayList()
         tabEntitys.add(password)
         tabEntitys.add(personCenter)
-        val passwordFragment = BlankFragment.newInstance("", "")
-        val personCenterFragment = BlankFragment.newInstance("", "")
+        val passwordFragment = PassWordFragment.newInstance()
+        val personCenterFragment = PassWordFragment.newInstance()
         val fragments: ArrayList<Fragment> = ArrayList()
         fragments.add(passwordFragment)
         fragments.add(personCenterFragment)
