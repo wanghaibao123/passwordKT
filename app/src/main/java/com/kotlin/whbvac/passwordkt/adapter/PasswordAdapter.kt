@@ -45,8 +45,4 @@ class PasswordAdapter(var context: Context, var data: List<PasswordBean>) : Recy
         fun onItemCallBack(t: T)
     }
 
-    fun setOnClick(callback: onCallBack<PasswordBean>) {
-        this.onClickLister = callback
-    }
-
 }

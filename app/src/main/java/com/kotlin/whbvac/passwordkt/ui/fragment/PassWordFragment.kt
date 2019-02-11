@@ -45,7 +45,7 @@ class PassWordFragment : Fragment() {
 
         adapter?.onClickLister = object : PasswordAdapter.onCallBack<PasswordBean> {
             override fun onItemCallBack(t: PasswordBean) {
-                startActivity(context?.let { AddPasswordActivity.getIntent(it, AddPasswordActivity.TYPE_SHOW) })
+                startActivity(context?.let { AddPasswordActivity.getIntent(it, AddPasswordActivity.TYPE_SHOW, t) })
             }
         }
         rlv_password.adapter = adapter
@@ -61,7 +61,7 @@ class PassWordFragment : Fragment() {
     }
 
     fun addPassword(view: View) {
-        startActivity(context?.let { AddPasswordActivity.getIntent(it, AddPasswordActivity.TYPE_ADD) })
+        startActivity(context?.let { AddPasswordActivity.getIntent(it, AddPasswordActivity.TYPE_ADD, null) })
     }
 }
 

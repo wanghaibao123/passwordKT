@@ -25,7 +25,7 @@ class AddPasswordActivity : BaseActivity() {
         intent?.let {
             type = it.getIntExtra("type", TYPE_SHOW)
             if (type == TYPE_SHOW) {
-                passwordBean = it.getSerializableExtra("bean") as PasswordBean?
+                passwordBean = it.getParcelableExtra("bean") as PasswordBean?
             }
         }
     }
@@ -90,20 +90,32 @@ class AddPasswordActivity : BaseActivity() {
                 tv_title.text = "密码"
                 tv_edit.visibility = GONE
                 bt_save.visibility = GONE
+
+                et_title.isEnabled = false
+                et_desc.isEnabled = false
+                et_username.isEnabled = false
+                et_password.isEnabled = false
+
+                et_title.setText(passwordBean?.userside)
+                et_desc.setText(passwordBean?.desc ?: " ")
+                et_username.setText(passwordBean?.name)
+                et_password.setText(passwordBean?.passsord)
             }
         }
     }
 
     override fun initData() {
+
     }
 
     companion object {
         val TYPE_ADD = 1
         val TYPE_EDIT = 2
         val TYPE_SHOW = 3
-        fun getIntent(context: Context, type: Int): Intent {
+        fun getIntent(context: Context, type: Int, bean: PasswordBean?): Intent {
             return Intent(context, AddPasswordActivity::class.java).apply {
                 putExtra("type", type)
+                putExtra("bean", bean)
             }
         }
     }
