@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@android:color/white</color>
+    <color name="colorPrimaryDark">@android:color/white</color>
+    <color name="colorAccent">#F44336</color>
 
     <color name="text_color">#7C7F89</color>
     <color name="title_color">#50B3FA</color>
@@ -50,5 +50,7 @@
     <color name="white">@android:color/white</color>
     <color name="orange">#F8B42B</color>
     <color name="black">@android:color/black</color>
+
+    <color name="color_text">@android:color/black</color>
 </resources>
 

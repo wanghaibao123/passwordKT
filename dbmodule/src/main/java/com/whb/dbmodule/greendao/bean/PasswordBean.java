@@ -4,12 +4,14 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
+
 /**
  * Created by whb on 2019/1/24.
  * Email:18720982457@163.com
  */
 @Entity(nameInDb = "password")
-public class PasswordBean {
+public class PasswordBean implements Serializable{
     //主键自增
     @Id(autoincrement = true)
     private Long id;
