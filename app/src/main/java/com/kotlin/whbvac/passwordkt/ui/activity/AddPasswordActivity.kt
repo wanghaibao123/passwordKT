@@ -52,7 +52,7 @@ class AddPasswordActivity : BaseActivity() {
         passwordBean.userside = et_title.text.toString()
         passwordBean.name = et_username.text.toString()
         passwordBean.passsord = et_password.text.toString()
-        passwordBean.desc = et_desc.toString()
+        passwordBean.desc = et_desc.text.toString()
         passwordBean.time = System.currentTimeMillis()
         if (TextUtils.isEmpty(passwordBean.userside)) {
             Toast.makeText(baseContext, "请填写标题", Toast.LENGTH_SHORT).show()
@@ -80,21 +80,12 @@ class AddPasswordActivity : BaseActivity() {
                 tv_edit.visibility = GONE
                 bt_save.visibility = VISIBLE
             }
-            TYPE_EDIT -> {
-                tv_title.text = "修改密码"
-                tv_edit.visibility = VISIBLE
-                bt_save.visibility = VISIBLE
-
-            }
             TYPE_SHOW -> {
                 tv_title.text = "密码"
                 tv_edit.visibility = GONE
                 bt_save.visibility = GONE
 
                 et_title.isEnabled = false
-                et_desc.isEnabled = false
-                et_username.isEnabled = false
-                et_password.isEnabled = false
 
                 et_title.setText(passwordBean?.userside)
                 et_desc.setText(passwordBean?.desc ?: " ")
@@ -110,7 +101,6 @@ class AddPasswordActivity : BaseActivity() {
 
     companion object {
         val TYPE_ADD = 1
-        val TYPE_EDIT = 2
         val TYPE_SHOW = 3
         fun getIntent(context: Context, type: Int, bean: PasswordBean?): Intent {
             return Intent(context, AddPasswordActivity::class.java).apply {
