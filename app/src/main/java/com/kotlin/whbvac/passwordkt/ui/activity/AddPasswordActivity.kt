@@ -3,6 +3,8 @@ package com.kotlin.whbvac.passwordkt.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
@@ -37,32 +39,48 @@ class AddPasswordActivity : BaseActivity() {
         })
 
         tv_edit.setOnClickListener({
-
+            tv_edit.visibility = GONE
+            bt_save.visibility = VISIBLE
+            et_title.isEnabled = true
+            et_username.isEnabled = true
+            et_password.isEnabled = true
+            et_desc.isEnabled = true
+            et_title.setSelection(et_title.length())
         })
 
         bt_save.setOnClickListener({
-            if (type == TYPE_ADD) {
-                save()
-            }
+            save()
         })
+
+        cb_password.setOnCheckedChangeListener({ buttonView, isChecked ->
+            if (isChecked) {
+                et_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
+            } else {
+                et_password.setTransformationMethod(PasswordTransformationMethod.getInstance())
+            }
+            et_password.setSelection(et_password.length())
+        })
+
     }
 
     fun save() {
-        val passwordBean = PasswordBean()
-        passwordBean.userside = et_title.text.toString()
-        passwordBean.name = et_username.text.toString()
-        passwordBean.passsord = et_password.text.toString()
-        passwordBean.desc = et_desc.text.toString()
-        passwordBean.time = System.currentTimeMillis()
-        if (TextUtils.isEmpty(passwordBean.userside)) {
+        if (passwordBean == null) {
+            passwordBean = PasswordBean()
+        }
+        passwordBean?.userside = et_title.text.toString()
+        passwordBean?.name = et_username.text.toString()
+        passwordBean?.passsord = et_password.text.toString()
+        passwordBean?.desc = et_desc.text.toString()
+        passwordBean?.time = System.currentTimeMillis()
+        if (TextUtils.isEmpty(passwordBean?.userside)) {
             Toast.makeText(baseContext, "请填写标题", Toast.LENGTH_SHORT).show()
             return
         }
-        if (TextUtils.isEmpty(passwordBean.name)) {
+        if (TextUtils.isEmpty(passwordBean?.name)) {
             Toast.makeText(baseContext, "请填写用户名", Toast.LENGTH_SHORT).show()
             return
         }
-        if (TextUtils.isEmpty(passwordBean.passsord)) {
+        if (TextUtils.isEmpty(passwordBean?.passsord)) {
             Toast.makeText(baseContext, "请填写密码", Toast.LENGTH_SHORT).show()
             return
         }
@@ -82,11 +100,12 @@ class AddPasswordActivity : BaseActivity() {
             }
             TYPE_SHOW -> {
                 tv_title.text = "密码"
-                tv_edit.visibility = GONE
+                tv_edit.visibility = VISIBLE
                 bt_save.visibility = GONE
-
                 et_title.isEnabled = false
-
+                et_username.isEnabled = false
+                et_password.isEnabled = false
+                et_desc.isEnabled = false
                 et_title.setText(passwordBean?.userside)
                 et_desc.setText(passwordBean?.desc ?: " ")
                 et_username.setText(passwordBean?.name)
@@ -98,6 +117,7 @@ class AddPasswordActivity : BaseActivity() {
     override fun initData() {
 
     }
+
 
     companion object {
         val TYPE_ADD = 1

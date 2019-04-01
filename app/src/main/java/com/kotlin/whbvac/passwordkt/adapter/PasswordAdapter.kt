@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.kotlin.whbvac.passwordkt.R
+import com.kotlin.whbvac.passwordkt.utils.DateUtil
 import com.whb.dbmodule.greendao.bean.PasswordBean
 
 /**
@@ -27,10 +28,14 @@ class PasswordAdapter(var context: Context, var data: List<PasswordBean>) : Recy
         var passwordBean = data.get(position)
         holder.password.text = passwordBean.passsord
         holder.title.text = passwordBean.userside
-        holder.time.text = passwordBean.time.toString()
+        holder.time.text = DateUtil.timeStamp2Date((passwordBean.time/1000).toString(), "yyyy-MM-dd HH:mm:ss")
         holder.username.text = passwordBean.name
-        holder.itemView.setOnClickListener(View.OnClickListener {
+        holder.itemView.setOnClickListener({
             onClickLister?.onItemCallBack(passwordBean)
+        })
+        holder.itemView.setOnLongClickListener({
+            onClickLister?.onLongItemCallBack(passwordBean)
+            true
         })
     }
 
@@ -43,6 +48,11 @@ class PasswordAdapter(var context: Context, var data: List<PasswordBean>) : Recy
 
     interface onCallBack<T> {
         fun onItemCallBack(t: T)
+        fun onLongItemCallBack(t: T)
+    }
+
+    fun setonClickLister(onCallBack: onCallBack<PasswordBean>) {
+        this.onClickLister = onClickLister
     }
 
 }
